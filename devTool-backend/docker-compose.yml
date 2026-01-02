@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: devtool-postgres
+    environment:
+      POSTGRES_USER: devtool
+      POSTGRES_PASSWORD: devtool
+      POSTGRES_DB: devtool
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,16 +1,20 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import { loadEnv } from "./config/env";
 import { logger } from "./shared/logger";
 import { healthRouter } from "./http/routes/health";
-import dotenv from "dotenv";
+import { db } from "./infrastructure/db/client"
 
-dotenv.config();
+
 const env = loadEnv();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+db.query("SELECT 1").then(()=> console.log("DB connected")).catch(err => console.error("DB connection failed", err));
 
 
 // Routes
